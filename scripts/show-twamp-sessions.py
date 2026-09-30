@@ -372,7 +372,8 @@ for file in os.listdir(SESSION_FILES_DIR):
             reflectorAddr = testLineSplit[2]
             status = testLineSplit[3]
             dscp = testLineSplit[4]
-            offload = testLineSplit[6]
+            # Only the dataplane-offload build of twampd writes this column.
+            offload = testLineSplit[6] if len(testLineSplit) > 6 else ""
         except IndexError:
             print("Failed to parse test session data in '{}' (line {})".format(
                     filePath, n+1))
